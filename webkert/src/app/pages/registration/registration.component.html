@@ -1,13 +1,42 @@
-<app-nav></app-nav>
+  <app-nav></app-nav>
 
-<div class="centering">
+  <div class="centering">
   <mat-card class="reg-card">
-    <form>
-      <h3>Regisztráció</h3>
+    <form [formGroup]="form" (ngSubmit)="registration()">
+      <h2 class="center"><b>Regisztráció</b></h2>
+      
+      <mat-card id="alertCard" class="alert" *ngIf="alertMessage">
+        {{alertMessage}}
+      </mat-card>
+
+      <mat-form-field class="max-width">
+        <mat-label>Felhasználónév</mat-label>
+        <input matInput type="text" name="nickname" placeholder="Pl. David123" required formControlName="username">
+      </mat-form-field>
+
+      <mat-form-field class="max-width">
+        <mat-label>E-mail</mat-label>
+        <input type="email" name="email" matInput placeholder="Pl. pat@example.com" formControlName="email">
+        <mat-hint>Van benne kukac</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field class="max-width">
+        <mat-label>Jelszó</mat-label>
+        <input type="password" name="password" matInput placeholder="Jelszó" formControlName="password1">
+        <mat-hint align="end">min. hossz 6 / {{form.value.password1.length}}</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field class="max-width">
+        <mat-label>Jelszó újra</mat-label>
+        <input type="password" name="password" matInput #password2 placeholder="Jelszó újra"
+          formControlName="password2">
+        <mat-hint align="end">min. hossz 6 / {{password2.value.length}}</mat-hint>
+      </mat-form-field>
+
+      <br><br>
+      <div><button type="submit" mat-raised-button color="primary" class="max-width" [disabled]="form.invalid">REGISZTRÁCIÓ</button></div>
       <br>
-      <div><button mat-button color="accent" [routerLink]="[ '/login' ]">BEJELENTKEZÉS</button></div>
-      <br>
-      <button mat-raised-button color="primary" class="max-width" disabled>REGISZTRÁCIÓ</button>
+      <div><button mat-stroked-button color="accent" class="max-width" [routerLink]="[ '/login' ]">BEJELENTKEZÉS</button></div>
     </form>
   </mat-card>
 </div>

@@ -1,3 +1,7 @@
+import { MatChipsModule } from '@angular/material/chips';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegistrationRoutingModule } from './registration-routing.module';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -9,7 +13,8 @@ import { NavModule } from '../nav/nav.module';
 @NgModule({
   declarations: [RegistrationComponent],
   imports: [
-    CommonModule, RegistrationRoutingModule, MatCardModule, MatButtonModule, NavModule
+    CommonModule, FormsModule, ReactiveFormsModule, RegistrationRoutingModule, MatCardModule, MatButtonModule, NavModule,
+    MatFormFieldModule, MatInputModule, MatChipsModule
   ]
 })
 export class RegistrationModule { }
