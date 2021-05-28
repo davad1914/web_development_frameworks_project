@@ -7,20 +7,24 @@
       <mat-card id="alertCard" class="alert" *ngIf="alertMessage">
         {{alertMessage}}
       </mat-card>
-      <mat-form-field class="max-width">
+      <mat-form-field class="max-width" appearance="fill">
         <mat-label>E-mail</mat-label>
-        <input type="email" name="email" matInput placeholder="Pl. pat@example.com" formControlName="email">
+        <input type="email" name="email" matInput placeholder="E-mail cím" formControlName="email">
       </mat-form-field>
-      <mat-form-field class="max-width">
+
+      <mat-form-field class="max-width" appearance="fill">
         <mat-label>Jelszó</mat-label>
-        <input type="password" name="password" matInput minlength="6" placeholder="Jelszó" formControlName="password">
+        <input [type]="hide ? 'password' : 'text'" name="password" matInput minlength="6" placeholder="Jelszó" formControlName="password">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
       </mat-form-field>
       
       <br>
-      <div><button type="submit" mat-raised-button color="primary" class="max-width" [disabled]="form.invalid">BEJELENTKEZÉS</button></div>
+      <div><button type="submit" mat-raised-button color="primary" class="max-width" [disabled]="form.invalid">Bejelentkezés</button></div>
       <br>
 
-      <div><button mat-stroked-button color="accent" class="max-width" (click)="navTo('/registration')">REGISZTRÁCIÓ</button></div>
+      <div><button mat-stroked-button color="accent" class="max-width" (click)="navTo('/registration')">Regisztráció</button></div>
     </form>
   </mat-card>
 </div>

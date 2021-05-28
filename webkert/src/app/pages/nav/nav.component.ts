@@ -1,5 +1,6 @@
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-nav',
@@ -8,9 +9,12 @@ import { Component } from '@angular/core';
 })
 export class NavComponent {
 
-  constructor(private router: Router) { }
+  user = localStorage.getItem('userUID');
+
+  constructor(private router: Router, public auth: AuthService) { }
 
   logout(): void {
+    this.auth.logout();
     this.router.navigateByUrl('login');
   }
 }

@@ -13,7 +13,7 @@ export class FbBaseService<T extends { id?: string }> {
   get(collectionName: string): Observable<T[]> {
     return this.afs.collection(collectionName, ref => {
       let query: CollectionReference | Query = ref;
-      query = query.orderBy('title', 'asc');
+      query = query.orderBy('noteName', 'asc');
       return query;
     }).valueChanges() as Observable<T[]>;
   }

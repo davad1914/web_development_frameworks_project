@@ -1,0 +1,42 @@
+<app-nav></app-nav>
+
+<br>
+
+<mat-card class="card" *ngIf="inData | async as item">
+  <div style="display: flex;">
+    <span style="flex: 1 1;"></span>
+    <button mat-button (click)="close()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <span style="flex: 1 1;"></span>
+  <div class="det-title">
+    <h1><b>{{item.noteName}}</b></h1>
+    <p>{{item.noteDesc}}</p>
+
+    <h3 class="center"><b>Módosítás</b></h3>
+
+    <form [formGroup]="form" (ngSubmit)="update()">
+      <mat-form-field class="max-width">
+        <mat-label>Cím</mat-label>
+        <input type="text" name="noteName" matInput placeholder="Cím" [(ngModel)]="item.noteName" formControlName="title">
+      </mat-form-field>
+      
+      <mat-form-field class="max-width">
+        <mat-label>Leírás</mat-label>
+        <!--<input type="text" name="password" matInput minlength="6" placeholder="Leírás" [(ngModel)]="item.noteDesc" formControlName="description">-->
+        <textarea formControlName="description" placeholder="Leírás" minlength="5" matInput cdkTextareaAutosize cdkAutosizeMinRows="4" [(ngModel)]="item.noteDesc" cdkAutosizeMaxRows="5"></textarea>
+      </mat-form-field>
+
+      
+
+      <br>
+      
+      <button type="submit" mat-raised-button color="primary" class="max-width" [disabled]="form.invalid" (click)="update()">Mentés</button>
+      <br><br>
+      <button type="submit" mat-button color="accent" class="max-width" (click)="delete()"><mat-icon>delete</mat-icon></button>
+    </form>
+
+
+  </div>
+</mat-card>

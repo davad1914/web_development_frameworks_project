@@ -1,7 +1,7 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
     <a mat-button [routerLink]="[ '/' ]">
-      Webkert
+      Jegyzettár
     </a>
     <span style="flex: 1 1;"></span>
     <!--<button mat-button [matMenuTriggerFor]="menu">
@@ -23,6 +23,12 @@
         <span>Kijelentkezés</span>
       </button>
     </mat-menu>-->
+
+    <div *ngIf="user">
+      <button color="accent" mat-button (click)="logout()">
+        <mat-icon>logout</mat-icon>
+      </button>
+    </div>
 
   </mat-toolbar-row>
 

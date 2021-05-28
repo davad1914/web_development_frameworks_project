@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { OnInit } from '@angular/core';
 import { HostListener } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-login',
@@ -12,12 +13,14 @@ import { HostListener } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
+  hide = true;
+  alertMessage = '';
+
   form: FormGroup = new FormGroup({
     email: new FormControl('', [Validators.email, Validators.required]),
     password: new FormControl('', [Validators.minLength(6), Validators.required])
   });
 
-  alertMessage = '';
   alertsList: any = {
     user: () => 'Hibás E-mail cím vagy jelszó.',
     server: () => 'A szolgáltatás nem elérhető.',
@@ -32,6 +35,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit():void{
     this.authService.logout();
+    console.log(this.authService.authenticated());
   }
 
   navTo(url: string): void {
@@ -45,7 +49,9 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.form.value.email, this.form.value.password).then(
       result => {
         console.log(result);
-        this.navTo('/registration');
+        localStorage.setItem('userUID', result.user.uid);
+        console.log(localStorage.getItem('userUID'));
+        this.navTo('/home');
       },
       (error) => {
         this.alertMessage = (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password')

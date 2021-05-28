@@ -9,34 +9,29 @@
         {{alertMessage}}
       </mat-card>
 
-      <mat-form-field class="max-width">
-        <mat-label>Felhasználónév</mat-label>
-        <input matInput type="text" name="nickname" placeholder="Pl. David123" required formControlName="username">
-      </mat-form-field>
-
-      <mat-form-field class="max-width">
+      <mat-form-field class="max-width" appearance="fill">
         <mat-label>E-mail</mat-label>
-        <input type="email" name="email" matInput placeholder="Pl. pat@example.com" formControlName="email">
-        <mat-hint>Van benne kukac</mat-hint>
+        <input type="email" name="email" matInput placeholder="E-mail cím" required formControlName="email">
+        <mat-hint>Ez lesz az azonosítód</mat-hint>
       </mat-form-field>
 
-      <mat-form-field class="max-width">
+      <mat-form-field class="max-width" appearance="fill">
         <mat-label>Jelszó</mat-label>
-        <input type="password" name="password" matInput placeholder="Jelszó" formControlName="password1">
+        <input type="password" name="password" matInput placeholder="Jelszó" required formControlName="password1">
         <mat-hint align="end">min. hossz 6 / {{form.value.password1.length}}</mat-hint>
       </mat-form-field>
 
-      <mat-form-field class="max-width">
+      <mat-form-field class="max-width" appearance="fill">
         <mat-label>Jelszó újra</mat-label>
-        <input type="password" name="password" matInput #password2 placeholder="Jelszó újra"
+        <input type="password" name="password" matInput #password2 required placeholder="Jelszó újra"
           formControlName="password2">
         <mat-hint align="end">min. hossz 6 / {{password2.value.length}}</mat-hint>
       </mat-form-field>
 
       <br><br>
-      <div><button type="submit" mat-raised-button color="primary" class="max-width" [disabled]="form.invalid">REGISZTRÁCIÓ</button></div>
+      <div><button type="submit" mat-raised-button color="primary" class="max-width" [disabled]="form.invalid">Regisztráció</button></div>
       <br>
-      <div><button mat-stroked-button color="accent" class="max-width" [routerLink]="[ '/login' ]">BEJELENTKEZÉS</button></div>
+      <div><button mat-stroked-button color="accent" class="max-width" [routerLink]="[ '/login' ]">Bejelentkezés</button></div>
     </form>
   </mat-card>
 </div>

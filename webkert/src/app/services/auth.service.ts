@@ -1,5 +1,6 @@
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Injectable } from '@angular/core';
+import { first } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
@@ -8,6 +9,7 @@ export class AuthService {
     constructor(private afAuth: AngularFireAuth) { }
 
     async logout(): Promise<void> {
+        localStorage.removeItem('userUID');
         await this.afAuth.signOut();
     }
 
@@ -25,6 +27,10 @@ export class AuthService {
 
     currentUserObservable(): any {
         return this.afAuth.authState;
+    }
+
+    currentUser(): any {
+      return this.afAuth.currentUser;
     }
 
     /* newPassword(newPassword: string) {
