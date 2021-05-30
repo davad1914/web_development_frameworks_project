@@ -1,21 +1,21 @@
 import { FbBaseService } from '../../../services/fb-base.service';
-import { Note } from '../../../models/notes.model';
 import { Component, OnInit } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
-import { NoteAddComponent } from '../add/note-add.component';
+import { RoleAddComponent } from '../add/role-add.component';
 import { FormControl } from '@angular/forms';
 import { catchError, debounceTime, map, startWith } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { UserRole } from 'src/app/models/UserRole';
 
 @Component({
-  selector: 'app-note-list',
-  templateUrl: './note-list.component.html',
-  styleUrls: ['./note-list.component.scss']
+  selector: 'app-role-list',
+  templateUrl: './role-list.component.html',
+  styleUrls: ['./role-list.component.scss']
 })
-export class NoteListComponent implements OnInit {
-  title = 'Jegyzetek';
-  list$: Observable<Note[]> | null = null;
+export class RoleListComponent implements OnInit {
+  title = 'Jogosultságok';
+  list$: Observable<UserRole[]> | null = null;
 
   myControl = new FormControl();
   options: string[] = ['One', 'Two', 'Three'];
@@ -23,7 +23,7 @@ export class NoteListComponent implements OnInit {
 
   errorObject = null;
 
-  constructor(private service: FbBaseService<Note>, private dialog: MatDialog, private router: Router) { }
+  constructor(private service: FbBaseService<UserRole>, private dialog: MatDialog, private router: Router) { }
 
   ngOnInit(): void {
     this.get();
@@ -37,7 +37,7 @@ export class NoteListComponent implements OnInit {
 
   get(): void {
     this.errorObject = null;
-    this.list$ = this.service.get('notes').pipe(
+    this.list$ = this.service.get('roles','involvementRole').pipe(
       catchError(err => {
         this.errorObject = err;
         return throwError(err);
@@ -46,12 +46,14 @@ export class NoteListComponent implements OnInit {
   }
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(NoteAddComponent, {});
+    const dialogRef = this.dialog.open(RoleAddComponent, {
+      maxHeight: '90vh'
+    });
     // tslint:disable-next-line: deprecation
-    dialogRef.afterClosed().subscribe((note: Note) => {
-      console.log(note);
-      if (note?.noteName) {
-        this.service.add('notes', note).then(id => { console.log(id); });
+    dialogRef.afterClosed().subscribe((role: UserRole) => {
+      console.log(role);
+      if (role?.involvementRole) {
+        this.service.add('roles', role).then(id => { console.log(id); });
       }
     }, err => {
       console.warn(err);
@@ -63,7 +65,7 @@ export class NoteListComponent implements OnInit {
     return this.options.filter(option => option.toLowerCase().includes(filterValue));
   }
 
-  onGetNote(event: Note): void {
-    this.router.navigateByUrl('/noteDetails/note/' + event.id);
+  onGetRole(event: UserRole): void {
+    this.router.navigateByUrl('/roleDetails/role/' + event.id);
   }
 }

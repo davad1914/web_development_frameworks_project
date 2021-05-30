@@ -1,0 +1,55 @@
+<app-nav></app-nav>
+
+<br>
+
+<mat-card class="card" *ngIf="inData | async as item">
+  <div style="display: flex;">
+    <span style="flex: 1 1;"></span>
+    <button mat-button (click)="close()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <span style="flex: 1 1;"></span>
+  <div class="det-title">
+    <h1><b>{{item.involvementRole}}</b></h1>
+    <p>{{item.href}}</p>
+    <p>{{item.function}}</p>
+    <p>{{item.action}}</p>
+
+    <h3 class="center"><b>Módosítás</b></h3>
+
+    <form [formGroup]="form" (ngSubmit)="update()">
+
+      <mat-form-field class="max-width">
+        <mat-label>Jog leírása</mat-label>
+        <textarea formControlName="involvementRole" [(ngModel)]="item.involvementRole" placeholder="Leírás" matInput cdkTextareaAutosize
+          cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" required></textarea>
+      </mat-form-field>
+
+      <mat-form-field class="max-width">
+        <mat-label>Jog elérése</mat-label>
+        <input matInput placeholder="Név" [(ngModel)]="item.href" focus formControlName="href" required>
+      </mat-form-field>
+    
+      <mat-form-field class="max-width">
+        <mat-label>Funkció</mat-label>
+        <input matInput placeholder="Funkció" [(ngModel)]="item.function" formControlName="function" required>
+      </mat-form-field>
+    
+      <mat-form-field class="max-width">
+        <mat-label>Akció</mat-label>
+        <input matInput placeholder="Akció" [(ngModel)]="item.action" formControlName="action" required>
+      </mat-form-field>
+
+      
+
+      <br>
+      
+      <button type="submit" mat-raised-button color="primary" class="max-width" [disabled]="form.invalid" (click)="update()">Mentés</button>
+      <br><br>
+      <button type="submit" mat-button color="accent" class="max-width" (click)="delete()"><mat-icon>delete</mat-icon></button>
+    </form>
+
+
+  </div>
+</mat-card>

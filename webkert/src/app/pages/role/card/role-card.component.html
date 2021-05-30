@@ -1,0 +1,14 @@
+<mat-card *ngIf="role" (click)="getRole.emit(role)" class="card" appOnHover>
+  <mat-card-header>
+    <mat-card-title>{{role.involvementRole}}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <p class="text" style="word-wrap: break-word;">{{role.href}}</p>
+  </mat-card-content>
+  <mat-card-content>
+    <p class="text" style="word-wrap: break-word;">{{role.function}}</p>
+  </mat-card-content>
+  <mat-card-content>
+    <p class="text" style="word-wrap: break-word;">{{role.action}}</p>
+  </mat-card-content>
+</mat-card>

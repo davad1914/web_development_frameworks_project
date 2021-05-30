@@ -6,7 +6,7 @@ export const CATEGORIES: Category[] = [
         icon: 'movie',
         value: 'movie',
         color: 'rgba(251, 3, 3, 0.46)',
-        url: '/home'
+        url: '/home/roles'
     },
     {
         title: 'JEGYZETEK',

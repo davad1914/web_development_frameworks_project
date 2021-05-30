@@ -1,0 +1,27 @@
+<form [formGroup]="form">
+  <h3>Jogosultság hozzáadás</h3>
+  <mat-form-field class="max-width">
+    <mat-label>Jog elérése</mat-label>
+    <input matInput placeholder="Név" focus formControlName="href" required>
+  </mat-form-field>
+  <mat-form-field class="max-width">
+    <mat-label>Jog leírása</mat-label>
+    <textarea formControlName="involvementRole" placeholder="Leírás" matInput cdkTextareaAutosize
+      cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5" required></textarea>
+  </mat-form-field>
+
+  <mat-form-field class="max-width">
+    <mat-label>Funkció</mat-label>
+    <input matInput placeholder="Funkció" formControlName="function" required>
+  </mat-form-field>
+
+  <mat-form-field class="max-width">
+    <mat-label>Akció</mat-label>
+    <input matInput placeholder="Akció" formControlName="action" required>
+  </mat-form-field>
+
+  <div style="display: flex; justify-content: flex-end;">
+    <button mat-button (click)="dialogRef.close()" class="margin-right">Mégsem</button>
+    <button mat-button [mat-dialog-close]="form.value" [disabled]="form.invalid">Hozzáad</button>
+  </div>
+</form>

@@ -1,4 +1,4 @@
-import { FbBaseService } from './../../services/fb-base.service';
+import { FbBaseService } from './../../../services/fb-base.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';

@@ -1,0 +1,28 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>{{title}}</span>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<app-container classes="container-1 flex">
+  <ng-container *ngIf="(list$) | async as list; else loadingOrError">
+    <app-role-card class="item" *ngFor="let item of list" [role]="item" (getRole)="onGetRole($event)"></app-role-card>
+    <br>
+  </ng-container>
+  <ng-template #loadingOrError>
+    <ng-container *ngIf="errorObject; else loading">
+      <span class="centering">
+        Valami hiba történt!
+      </span>
+    </ng-container>
+    <ng-template #loading>
+      <span class="centering">
+        <mat-spinner></mat-spinner>
+      </span>
+    </ng-template>
+  </ng-template>
+</app-container>
+
+<button mat-fab class="action-btn" (click)="openDialog()">
+  <mat-icon>add</mat-icon>
+</button>

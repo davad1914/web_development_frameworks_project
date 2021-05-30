@@ -16,6 +16,10 @@ const routes: Routes = [
             {
                 path: 'notes',
                 loadChildren: () => import('../note/list/note-list.module').then(m => m.NoteListModule),
+            },
+            {
+                path: 'roles',
+                loadChildren: () => import('../role/list/role-list.module').then(m => m.RoleListModule),
             }
         ],
     },

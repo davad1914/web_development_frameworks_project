@@ -10,10 +10,16 @@ export class FbBaseService<T extends { id?: string }> {
   constructor(private afs: AngularFirestore) { }
 
   // tslint:disable-next-line: typedef
-  get(collectionName: string): Observable<T[]> {
+  get(collectionName: string, fieldName?: string): Observable<T[]> {
+    let field = "";
+    if(fieldName != undefined){
+      field = "involvementRole";
+    }else{
+      field = "noteName";
+    }
     return this.afs.collection(collectionName, ref => {
       let query: CollectionReference | Query = ref;
-      query = query.orderBy('noteName', 'asc');
+      query = query.orderBy(field, 'asc');
       return query;
     }).valueChanges() as Observable<T[]>;
   }
