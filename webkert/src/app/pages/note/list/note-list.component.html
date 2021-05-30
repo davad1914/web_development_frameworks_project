@@ -6,7 +6,7 @@
 
 <app-container classes="container-1 flex">
   <ng-container *ngIf="(list$) | async as list; else loadingOrError">
-    <app-game-card class="item" *ngFor="let item of list" [note]="item" (getNote)="onGetNote($event)"></app-game-card>
+    <app-note-card class="item" *ngFor="let item of list" [note]="item" (getNote)="onGetNote($event)"></app-note-card>
     <br>
   </ng-container>
   <ng-template #loadingOrError>

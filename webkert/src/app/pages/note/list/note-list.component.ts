@@ -1,19 +1,19 @@
-import { FbBaseService } from './../../../services/fb-base.service';
-import { Note } from './../../../models/notes.model';
+import { FbBaseService } from '../../../services/fb-base.service';
+import { Note } from '../../../models/notes.model';
 import { Component, OnInit } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
-import { GameAddComponent } from '../add/game-add.component';
+import { NoteAddComponent } from '../add/note-add.component';
 import { FormControl } from '@angular/forms';
 import { catchError, debounceTime, map, startWith } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-game-list',
-  templateUrl: './game-list.component.html',
-  styleUrls: ['./game-list.component.scss']
+  selector: 'app-note-list',
+  templateUrl: './note-list.component.html',
+  styleUrls: ['./note-list.component.scss']
 })
-export class GameListComponent implements OnInit {
+export class NoteListComponent implements OnInit {
   title = 'Jegyzetek';
   list$: Observable<Note[]> | null = null;
 
@@ -46,7 +46,7 @@ export class GameListComponent implements OnInit {
   }
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(GameAddComponent, {});
+    const dialogRef = this.dialog.open(NoteAddComponent, {});
     // tslint:disable-next-line: deprecation
     dialogRef.afterClosed().subscribe((note: Note) => {
       console.log(note);

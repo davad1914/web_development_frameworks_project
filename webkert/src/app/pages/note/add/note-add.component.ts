@@ -3,11 +3,11 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-game-add',
-  templateUrl: './game-add.component.html',
-  styleUrls: ['./game-add.component.scss']
+  selector: 'app-note-add',
+  templateUrl: './note-add.component.html',
+  styleUrls: ['./note-add.component.scss']
 })
-export class GameAddComponent implements OnInit {
+export class NoteAddComponent implements OnInit {
   today: number = Date.now();
   valami = (new Date).toLocaleDateString();
   form: FormGroup = new FormGroup({
@@ -18,7 +18,7 @@ export class GameAddComponent implements OnInit {
     createDate: new FormControl(this.valami)
   });
 
-  constructor(public dialogRef: MatDialogRef<GameAddComponent>) { }
+  constructor(public dialogRef: MatDialogRef<NoteAddComponent>) { }
 
   ngOnInit(): void {
   }
