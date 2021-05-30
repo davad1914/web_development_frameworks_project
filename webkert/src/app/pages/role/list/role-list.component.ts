@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { RoleAddComponent } from '../add/role-add.component';
 import { FormControl } from '@angular/forms';
 import { catchError, debounceTime, map, startWith } from 'rxjs/operators';
+import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { UserRole } from 'src/app/models/UserRole';
 
@@ -23,7 +24,7 @@ export class RoleListComponent implements OnInit {
 
   errorObject = null;
 
-  constructor(private service: FbBaseService<UserRole>, private dialog: MatDialog, private router: Router) { }
+  constructor(private service: FbBaseService<UserRole>, private dialog: MatDialog, private router: Router, private location: Location) { }
 
   ngOnInit(): void {
     this.get();
@@ -43,6 +44,10 @@ export class RoleListComponent implements OnInit {
         return throwError(err);
       })
     );
+  }
+
+  close(): void {
+    this.location.back();
   }
 
   openDialog(): void {

@@ -5,6 +5,7 @@ import { Observable, throwError } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { NoteAddComponent } from '../add/note-add.component';
 import { FormControl } from '@angular/forms';
+import { Location } from '@angular/common';
 import { catchError, debounceTime, map, startWith } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
@@ -23,7 +24,7 @@ export class NoteListComponent implements OnInit {
 
   errorObject = null;
 
-  constructor(private service: FbBaseService<Note>, private dialog: MatDialog, private router: Router) { }
+  constructor(private service: FbBaseService<Note>, private dialog: MatDialog, private router: Router, private location: Location) { }
 
   ngOnInit(): void {
     this.getNotes();
@@ -43,6 +44,10 @@ export class NoteListComponent implements OnInit {
         return throwError(err);
       })
     );
+  }
+
+  close(): void {
+    this.location.back();
   }
 
   openDialog(): void {
