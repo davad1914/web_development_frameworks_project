@@ -2,7 +2,7 @@
   <div class="mTitle center">Feladat választó</div>
 
   <div class="splash-category">
-    <mat-card *ngFor="let item of categories" matRipple [matRippleColor]="item.color" appOnHover
+    <mat-card *ngFor="let item of categories" matRipple [matRippleColor]="item.color" appOnHover matTooltip="Megnyitás"
       [routerLink]="[ item.url ]">
       {{item.title}}
     </mat-card>

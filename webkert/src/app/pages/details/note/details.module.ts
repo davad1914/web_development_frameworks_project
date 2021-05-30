@@ -10,12 +10,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DetailsComponent } from './details.component';
 import { NavModule } from '../../nav/nav.module';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [DetailsComponent],
   imports: [
     CommonModule, FormsModule, ReactiveFormsModule,
-    DetailsRoutingModule, MatCardModule, MatButtonModule, MatIconModule, MatTabsModule, MatFormFieldModule, MatInputModule, NavModule,
+    DetailsRoutingModule, MatCardModule, MatButtonModule, MatIconModule, MatTabsModule, MatFormFieldModule, MatInputModule, NavModule,MatTooltipModule
   ],
   exports: [DetailsComponent],
 })

@@ -36,6 +36,10 @@ export class DetailsComponent implements OnInit {
     console.log(this.id, this.dataNameStr);
   }
 
+  ngOnDestroy(): void{
+    alert("Módosítás felület elhagyása!");
+  }
+
   getItem(): void {
     this.inData = this.service.getById(this.dataNameStr + 's', this.id);
   }

@@ -9,7 +9,6 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class HomeComponent {
 
-
   constructor(private router: Router, private authService: AuthService) {}
 
    ngOnInit(){
@@ -18,5 +17,9 @@ export class HomeComponent {
     console.log(user);
     console.log(this.authService.authenticated());
    }
+
+   ngAfterContentInit(): void{
+    console.log("back");
+  }
 
 }

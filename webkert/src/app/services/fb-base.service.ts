@@ -19,10 +19,20 @@ export class FbBaseService<T extends { id?: string }> {
     }
     return this.afs.collection(collectionName, ref => {
       let query: CollectionReference | Query = ref;
-      query = query.orderBy(field, 'asc');
+      query = query.orderBy(field, 'asc').limit(200);
       return query;
     }).valueChanges() as Observable<T[]>;
   }
+
+  getNotes(collectionName: string): Observable<T[]>{
+    return this.afs.collection(collectionName,
+      ref => {
+        let query: CollectionReference | Query = ref;
+          query = query.where('userID', '==', localStorage.getItem("userUID"));
+        return query;
+      }
+    ).valueChanges() as Observable<T[]>;
+    }
 
   /* get(collectionName: string, limit?: any, orderBy?: any, startAt?: any, parent?: string, parentPath = 'parentId', opStr = '==') {
     return this.afs.collection(collectionName,

@@ -2,17 +2,17 @@ import { Category } from '../models/category.model';
 
 export const CATEGORIES: Category[] = [
     {
-        title: 'Felsználók',
-        icon: 'movie',
-        value: 'movie',
+        title: 'JOGOSULTSÁGOK',
+        icon: 'role',
+        value: 'role',
         color: 'rgba(251, 3, 3, 0.46)',
         url: '/home/roles'
     },
     {
         title: 'JEGYZETEK',
-        icon: 'games',
-        value: 'game',
-        color: 'rgba(251, 3, 3, 0.46)',
+        icon: 'note',
+        value: 'note',
+        color: 'rgba(96, 230, 75, 0.49)',
         url: '/home/notes'
     }
 ];

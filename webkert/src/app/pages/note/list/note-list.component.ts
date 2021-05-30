@@ -26,7 +26,7 @@ export class NoteListComponent implements OnInit {
   constructor(private service: FbBaseService<Note>, private dialog: MatDialog, private router: Router) { }
 
   ngOnInit(): void {
-    this.get();
+    this.getNotes();
     this.filteredOptions$ = this.myControl.valueChanges
       .pipe(
         startWith(''),
@@ -35,9 +35,9 @@ export class NoteListComponent implements OnInit {
       );
   }
 
-  get(): void {
+  getNotes(): void {
     this.errorObject = null;
-    this.list$ = this.service.get('notes').pipe(
+    this.list$ = this.service.getNotes('notes').pipe(
       catchError(err => {
         this.errorObject = err;
         return throwError(err);
